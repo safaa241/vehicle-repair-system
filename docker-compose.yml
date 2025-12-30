@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8762:8761"
+    networks:
+      - repair-network
+    environment:
+      SERVER_PORT: 8761
+      SPRING_APPLICATION_NAME: eureka-server
+
+  client-service:
+    container_name: service-clients
+    build:
+      context: ./service-clients
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_APPLICATION_NAME: client-service
+      SERVER_PORT: 8081
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - repair-network
+
+  vehicule-service:
+    container_name: vehicule-service
+    build:
+      context: ./vehicule-service
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_APPLICATION_NAME: vehicule-service
+      SERVER_PORT: 8082
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - repair-network
+
+  reparation-service:
+    container_name: reparation-service
+    build:
+      context: ./reparation-service
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_APPLICATION_NAME: reparation-service
+      SERVER_PORT: 8083
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - repair-network
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_APPLICATION_NAME: api-gateway
+      SERVER_PORT: 8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    networks:
+      - repair-network
+
+networks:
+  repair-network:
+    driver: bridge
