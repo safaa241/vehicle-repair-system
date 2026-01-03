@@ -243,10 +243,13 @@ docker compose up --build
 Chaque microservice est exécuté dans un **conteneur Docker** sur un **réseau commun**.
 
 
-## 👤 Auteur
 
-* **Nom :** FEKNI Safaa & BACHRI Fatima Ezzahra
+
+* **Réalisé par :** FEKNI Safaa & BACHRI Fatima Ezzahra
 * **Projet :** Vehicle Repair Management System
 * **Technologies :** Java – Spring Boot – Docker
+* **Module :** Développement dans le Cloud & Microservices<
+* **Année Universitaire :** 2025-2026
+* **Encadré par :** Mr: HABIB Ayad
 
 
