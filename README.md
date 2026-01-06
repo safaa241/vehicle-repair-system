@@ -58,7 +58,7 @@ vehicle-repair-system
    * Point d’entrée unique pour tous les clients externes
    * Redirige les requêtes vers les services appropriés
    * Gestion de la sécurité, routage et load balancing
-   * Port exposé : `8080`
+   * Port exposé : `8899`
 
 3. **Client Service**
 
@@ -100,7 +100,7 @@ vehicle-repair-system
  **Base URL**
 
 ```
-http://localhost:8080
+http://localhost:8899
 ```
 
 Chaque test est effectué via l’API Gateway.
@@ -229,7 +229,7 @@ Chaque test est effectué via l’API Gateway.
 | Composant     | URL                                            |
 | ------------- | ---------------------------------------------- |
 | Eureka Server | [http://localhost:8761](http://localhost:8761) |
-| API Gateway   | [http://localhost:8080](http://localhost:8080) |
+| API Gateway   | [http://localhost:8899](http://localhost:8899) |
 
 
 ##  Déploiement avec Docker
